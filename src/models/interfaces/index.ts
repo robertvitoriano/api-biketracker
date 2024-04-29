@@ -1,9 +1,3 @@
-import {IUserModel} from './IUserModel'
-import {INote} from './INote'
-import {ICategory} from './ICategory'
+import { IUserModel } from "./IUserModel";
 
-export {
-  IUserModel,
-  INote,
-  ICategory
-}
+export { IUserModel };

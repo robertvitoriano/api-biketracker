@@ -1,7 +1,4 @@
-import User from './User'
-import Note from './Note'
-import Category from './Category'
+import User from "./User";
+import Track from "./Track";
 
-export {
-  Note, User, Category
-}
+export { User };

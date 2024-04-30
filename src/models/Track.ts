@@ -3,14 +3,14 @@ import { ITrack } from "./interfaces";
 
 const Schema = mongoose.Schema;
 
-const PointSchema = new Schema({
+const LineSchema = new Schema({
   type: {
     type: String,
-    default: "Point",
+    default: "LineString",
     required: true,
   },
   coordinates: {
-    type: [Number, Number],
+    type: Array,
     required: true,
   },
 });
@@ -21,7 +21,7 @@ const TrackSchema = new Schema<ITrack>(
       required: true,
     },
     path: {
-      type: [PointSchema],
+      type: LineSchema,
       required: true,
     },
     userId: {

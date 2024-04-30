@@ -5,7 +5,7 @@ class StoreNewUserTrackController {
 
   async handle(request: Request, response: Response) {
     const { coordinates, title } = request.body;
-    const { _id: userId } = request?.user;
+    const { _id: userId } = request.user;
     try {
       const createNewUserTrackResponse = await this.storeNewUserUseCase.execute(
         {

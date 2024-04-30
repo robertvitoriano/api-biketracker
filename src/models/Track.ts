@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { ITrack } from "./interfaces";
+import { ITrackDocument } from "./interfaces/ITrack";
 
 const Schema = mongoose.Schema;
 
@@ -14,7 +14,7 @@ const LineSchema = new Schema({
     required: true,
   },
 });
-const TrackSchema = new Schema<ITrack>(
+const TrackSchema = new Schema<ITrackDocument>(
   {
     title: {
       type: String,

@@ -1,7 +1,5 @@
 export interface ITrackDTO {
-  path: Array<{
-    coordinates: [number, number];
-  }>;
+  coordinates: [[number, number]];
   userId: string;
   title: string;
 }

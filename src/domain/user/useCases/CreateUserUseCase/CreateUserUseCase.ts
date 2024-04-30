@@ -1,32 +1,33 @@
 import { UserRepository } from "../../repositories/UserRepository";
-import { generateAuthToken } from './../../../../utils'
+import { generateAuthToken } from "./../../../../utils";
+import { encodePassword } from "./../../../../utils";
 
 class CreateUserUseCase {
-  constructor(private userRepository: UserRepository) { }
-  async execute(email: string) {
+  constructor(private userRepository: UserRepository) {}
+  async execute({ name, username, email, password }) {
+    const userExists = !!(await this.userRepository.findByCredentials({
+      email,
+    }));
 
-    const userExists = !!(await this.userRepository.findByCredentials({ email }))
+    if (userExists) throw new Error("Email not available !");
+    const encodedPassword = await encodePassword(password);
 
-    if (userExists) throw new Error('Email not available !')
-
-    console.log('verificando existencia de email')
-
-    const user = await this.userRepository.createUser(email);
+    const user = await this.userRepository.createUser({
+      username,
+      name,
+      email,
+      password: encodedPassword,
+    });
 
     const token = await generateAuthToken(user._id.toString());
 
-    if (!token) throw new Error('Unable to create user !')
-
-    console.log('gerando token caso usuario não exista')
+    if (!token) throw new Error("Unable to create user !");
 
     return {
       token,
       user,
-      message: `Em breve um E-mail  de confirmação será  enviado para ${user.email}`
     };
   }
 }
 
-export {
-  CreateUserUseCase
-}
+export { CreateUserUseCase };

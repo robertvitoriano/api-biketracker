@@ -10,7 +10,7 @@ const Track = new Schema<ITrack>(
       required: true,
     },
     coordinates: {
-      type: String,
+      type: Array,
       required: true,
     },
   },

@@ -1,49 +1,55 @@
-import UserModel from './../../../models/User';
-import { IUserRepository } from './IUserRepository'
-import { IUser, IUserCredentials } from './../types'
+import UserModel from "./../../../models/User";
+import { IUserRepository } from "./IUserRepository";
+import { IUser, IUserCredentials } from "./../types";
 class UserRepository implements IUserRepository {
+  constructor(private userModel: typeof UserModel) {}
 
-  constructor(private userModel: typeof UserModel) { }
+  async update(data: any): Promise<IUser> {
+    const user = await this.userModel.findOneAndUpdate(
+      {
+        email: data.email,
+      },
+      {
+        ...data,
+      },
+      {
+        new: true,
+        useFindAndModify: false,
+      }
+    );
 
-  async update(data:any): Promise<IUser> {
-    const user = await this.userModel.findOneAndUpdate({
-      email:data.email
-    }, {
-      ...data
-    },{
-      new:true,
-      useFindAndModify:false
-    })
-
-    await user.save()
-    return user
+    await user.save();
+    return user;
   }
-  public async createUser(email: string): Promise<IUser> {
+  public async createUser({ username, name, email, password }): Promise<IUser> {
     const user = await this.userModel.create({
-      email
-    })
-    await user.save()
-    return user
+      username,
+      name,
+      email,
+      password,
+    });
+    return user;
   }
 
-  public async findByCredentials({ email, username }: IUserCredentials): Promise<IUser> {
-
-    let user = null
+  public async findByCredentials({
+    email,
+    username,
+  }: IUserCredentials): Promise<IUser> {
+    let user = null;
 
     if (email) {
       user = await this.userModel.findOne({
-        email
-      })
+        email,
+      });
     }
     if (username) {
       user = await this.userModel.findOne({
-        username
-      })
+        username,
+      });
     }
 
-    return user
-
+    return user;
   }
 }
 
-export { UserRepository }
+export { UserRepository };

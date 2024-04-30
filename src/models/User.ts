@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import validator from "validator";
 import { IUserModel } from "./interfaces";
-const Schema = mongoose.Schema;
 
 const userSchema = new mongoose.Schema<IUserModel>(
   {
@@ -10,11 +9,6 @@ const userSchema = new mongoose.Schema<IUserModel>(
       required: false,
       trim: true,
       unique: true,
-    },
-    confirmed: {
-      type: Boolean,
-      required: false,
-      default: false,
     },
     name: {
       type: String,
@@ -32,21 +26,6 @@ const userSchema = new mongoose.Schema<IUserModel>(
           throw new Error("Email is invalid");
         }
       },
-    },
-    receivedEmail: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
-    isRecoveringPassword: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
-    emailAttempts: {
-      type: Number,
-      required: false,
-      default: 0,
     },
     password: {
       type: String,

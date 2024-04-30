@@ -3,20 +3,36 @@ import { ITrack } from "./interfaces";
 
 const Schema = mongoose.Schema;
 
-const Track = new Schema<ITrack>(
+const PointSchema = new Schema({
+  type: {
+    type: String,
+    enum: ["Point"],
+    required: true,
+  },
+  coordinates: {
+    type: [Number],
+    required: true,
+  },
+});
+const TrackSchema = new Schema<ITrack>(
   {
     title: {
       type: String,
       required: true,
     },
-    coordinates: {
-      type: Array,
+    path: {
+      type: [PointSchema],
+      required: true,
+    },
+    userId: {
+      type: String,
       required: true,
     },
   },
   { timestamps: true }
 );
+TrackSchema.index({ path: "2dsphere" });
 
-const trackModel = mongoose.model("track", Track);
+const trackModel = mongoose.model("track", TrackSchema);
 
 export default trackModel;

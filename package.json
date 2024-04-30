@@ -14,7 +14,8 @@
     "postinstall": "tsc && copyfiles src/views/*.ejs src/views/assets/*.css src/views/*.jpg build/ ",
     "copy-files": "src/views/*.ejs src/views/assets/*.css src/views/*.jpg build/",
     "watch-node": "nodemon build/src/server.js",
-    "watch-ts": "tsc -w && copy-files"
+    "watch-ts": "tsc -w && copy-files",
+    "prod":"pm2 build/src/server.js"
   },
   "dependencies": {
     "@types/bcrypt": "^5.0.0",

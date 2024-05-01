@@ -15,7 +15,18 @@ const app = express();
 
 app.use(morgan(":method :url :response-time  :status"));
 
-app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://biketracker.robertvitoriano.com/",
+];
+
+const corsOptions = {
+  origin: allowedOrigins,
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
 app.get("/", (request, response) => {
   response.json({
     message: "API is running !",

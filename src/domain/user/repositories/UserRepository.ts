@@ -38,9 +38,16 @@ class UserRepository implements IUserRepository {
     let user = null;
 
     if (email) {
-      user = await this.userModel.findOne({
-        email,
-      });
+      user = await this.userModel
+        .findOne({
+          email,
+        })
+        .select({
+          name: 1,
+          username: 1,
+          email: 1,
+          password: 1,
+        });
     }
     if (username) {
       user = await this.userModel.findOne({

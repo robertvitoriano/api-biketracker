@@ -6,8 +6,6 @@ import cors from "cors";
 
 import router from "./routes/router";
 
-import { confirmEmailJob } from "./jobs/confirmEmailJob";
-import { recoverPasswordJob } from "./jobs/recoverPasswordJob";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -17,8 +15,7 @@ const app = express();
 
 app.use(morgan(":method :url :response-time  :status"));
 
-app.use(cors());
-
+app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.get("/", (request, response) => {
   response.json({
     message: "API is running !",

@@ -9,7 +9,10 @@ class LoginUseCase {
     email,
     username,
     password,
-  }: IUserCredentials): Promise<{ user: IUser; token: string }> {
+  }: IUserCredentials): Promise<{
+    user: { email: string; name: string; username: string };
+    token: string;
+  }> {
     const user = await this.userRepository.findByCredentials({
       email,
       username,
@@ -20,17 +23,21 @@ class LoginUseCase {
 
     if (!token) throw new Error("Unable to login !");
 
-    const isPasswordValid = this.verifyPassword({
+    const isPasswordValid = await this.verifyPassword({
       password,
       userInstanceEndcodedPassword: user.password,
     });
 
     if (!isPasswordValid) throw new Error("Unable to login !");
-
-    return { user, token };
+    return {
+      user: { name: user.name, email: user.email, username: user.username },
+      token,
+    };
   }
 
   private async verifyPassword({ password, userInstanceEndcodedPassword }) {
+    if (!password && !userInstanceEndcodedPassword) return;
+
     const isMatch = await bcrypt.compare(
       password,
       userInstanceEndcodedPassword

@@ -15,7 +15,10 @@ const app = express();
 
 app.use(morgan(":method :url :response-time  :status"));
 
-const allowedOrigins = ["localhost:5173", "biketracker.robertvitoriano.com"];
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://biketracker.robertvitoriano.com/",
+];
 
 const corsOptions = {
   origin: allowedOrigins,

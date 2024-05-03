@@ -3,4 +3,5 @@ export interface ITrackDTO {
   userId: string;
   title: string;
   time: number;
+  distance: number;
 }

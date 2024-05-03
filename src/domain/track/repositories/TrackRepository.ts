@@ -14,6 +14,7 @@ class TrackRepository implements ITrackRepository {
         title: 1,
         coordinates: "$path.coordinates",
         time: 1,
+        distance: 1,
         created: 1,
       });
   }

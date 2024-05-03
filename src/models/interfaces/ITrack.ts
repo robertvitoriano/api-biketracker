@@ -7,6 +7,7 @@ export interface ITrack {
     coordinates: Array<[number, number]>;
   };
   time: number;
+  distance: number;
   userId: string;
   createdAt?: string;
   updatedAt?: string;
@@ -19,6 +20,7 @@ export interface ITrackDocument extends Document {
     coordinates: Array<[number, number]>;
   };
   time: number;
+  distance: number;
   userId: string;
   createdAt?: string;
   updatedAt?: string;

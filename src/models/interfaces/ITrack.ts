@@ -6,6 +6,7 @@ export interface ITrack {
     type?: "LineString";
     coordinates: Array<[number, number]>;
   };
+  time: number;
   userId: string;
   createdAt?: string;
   updatedAt?: string;
@@ -17,6 +18,7 @@ export interface ITrackDocument extends Document {
     type: string;
     coordinates: Array<[number, number]>;
   };
+  time: number;
   userId: string;
   createdAt?: string;
   updatedAt?: string;

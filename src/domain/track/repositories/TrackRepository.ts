@@ -13,6 +13,7 @@ class TrackRepository implements ITrackRepository {
         _id: 1,
         title: 1,
         coordinates: "$path.coordinates",
+        time: 1,
         created: 1,
       });
   }

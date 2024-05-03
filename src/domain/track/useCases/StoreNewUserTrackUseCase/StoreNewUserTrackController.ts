@@ -4,7 +4,7 @@ class StoreNewUserTrackController {
   constructor(private storeNewUserUseCase: StoreNewUserTrackUseCase) {}
 
   async handle(request: Request, response: Response) {
-    const { coordinates, title } = request.body;
+    const { coordinates, title, time } = request.body;
     const { _id: userId } = request.user;
     try {
       const createNewUserTrackResponse = await this.storeNewUserUseCase.execute(
@@ -12,6 +12,7 @@ class StoreNewUserTrackController {
           title,
           coordinates,
           userId,
+          time,
         }
       );
       return response.status(201).json(createNewUserTrackResponse);

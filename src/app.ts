@@ -18,6 +18,7 @@ app.use(morgan(":method :url :response-time  :status"));
 const allowedOrigins = [
   "http://localhost:5173",
   "https://biketracker.robertvitoriano.com/",
+  "https://localhost",
 ];
 
 const corsOptions = {

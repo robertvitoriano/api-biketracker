@@ -24,6 +24,11 @@ const TrackSchema = new Schema<ITrackDocument>(
       type: LineSchema,
       required: true,
     },
+    time: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
     userId: {
       type: String,
       required: true,

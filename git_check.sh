@@ -6,7 +6,7 @@ BASE=$(git merge-base @ @{u})
 if [ $LOCAL = $REMOTE ]; then
     echo "Local repository is up to date."
 elif [ $LOCAL = $BASE ]; then
-    echo "There are changes in the remote repository. Pulling changes..."
+    echo "There are changes in the remote repository. running git pull"
     git pull
 else
     echo "Local repository is ahead of the remote. Please push your changes before pulling."

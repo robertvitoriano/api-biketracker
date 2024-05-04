@@ -9,5 +9,5 @@ elif [ $LOCAL = $BASE ]; then
     echo "There are changes in the remote repository. running git pull"
     git pull
 else
-    echo "Local repository is ahead of the remote. Please push your changes before pulling."
+    echo "Local changes detected. Please push your changes before pulling."
 fi

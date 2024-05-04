@@ -29,6 +29,11 @@ const TrackSchema = new Schema<ITrackDocument>(
       required: true,
       default: 0,
     },
+    distance: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
     userId: {
       type: String,
       required: true,

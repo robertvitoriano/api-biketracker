@@ -1,0 +1,13 @@
+git remote update >/dev/null 2>&1
+LOCAL=$(git rev-parse @)
+REMOTE=$(git rev-parse @{u})
+BASE=$(git merge-base @ @{u})
+
+if [ $LOCAL = $REMOTE ]; then
+    echo "Local repository is up to date."
+elif [ $LOCAL = $BASE ]; then
+    echo "There are changes in the remote repository. Pulling changes..."
+    git pull
+else
+    echo "Local repository is ahead of the remote. Please push your changes before pulling."
+fi

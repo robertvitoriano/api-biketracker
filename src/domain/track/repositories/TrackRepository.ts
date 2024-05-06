@@ -1,9 +1,38 @@
 import { ITrack } from "../../../models/interfaces";
 import TracKModel from "./../../../models/Track";
-import { ITrackRepository } from "./ITrackRepository";
+import { ITrackRepository, IUserStatistics } from "./ITrackRepository";
 
 class TrackRepository implements ITrackRepository {
   constructor(private trackModel: typeof TracKModel) {}
+
+  async getUserStatistics(userId: string): Promise<IUserStatistics> {
+    const aggregationResult = await this.trackModel.aggregate([
+      {
+        $match: { userId },
+      },
+      {
+        $group: {
+          _id: null,
+          totalOfTracks: { $sum: 1 },
+          totalTime: { $sum: "$time" },
+          totalDistance: { $sum: "$distance" },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          totalOfTracks: 1,
+          totalTime: 1,
+          totalDistance: 1,
+        },
+      },
+    ]);
+    const userStatistics =
+      aggregationResult.length > 0 ? aggregationResult[0] : null;
+
+    return userStatistics;
+  }
+
   async getUserTracks(userId: string): Promise<ITrack[]> {
     return this.trackModel
       .find({

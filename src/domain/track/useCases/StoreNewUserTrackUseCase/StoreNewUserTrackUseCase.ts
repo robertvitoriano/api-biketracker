@@ -59,7 +59,7 @@ class StoreNewUserTrackUseCase {
         distance: Number(data.distance),
         time: Number(data.time),
         path: { coordinates: coordinatesParsed },
-        image: `https://${Bucket}/${s3Key}`,
+        image: `https://${Bucket}.s3.amazonaws.com/${s3Key}`,
       });
     } else {
       console.error("Unsupported image format");

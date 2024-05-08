@@ -38,6 +38,11 @@ const TrackSchema = new Schema<ITrackDocument>(
       type: String,
       required: true,
     },
+    image: {
+      type: String,
+      required: true,
+      default: "adasdas",
+    },
   },
   { timestamps: true }
 );

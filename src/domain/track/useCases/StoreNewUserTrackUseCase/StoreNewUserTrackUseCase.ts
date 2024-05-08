@@ -44,6 +44,7 @@ class StoreNewUserTrackUseCase {
         Bucket,
         Key: s3Key,
         Body: Buffer.from(imageData, "base64"),
+        ContentDisposition: "attachment",
       };
       try {
         //@ts-ignore
@@ -58,7 +59,7 @@ class StoreNewUserTrackUseCase {
         distance: Number(data.distance),
         time: Number(data.time),
         path: { coordinates: coordinatesParsed },
-        image: `https://${Bucket}/${s3Key}`, // S3 image URL
+        image: `https://${Bucket}/${s3Key}`,
       });
     } else {
       console.error("Unsupported image format");

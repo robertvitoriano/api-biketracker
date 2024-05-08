@@ -9,6 +9,7 @@ export interface ITrack {
   time: number;
   distance: number;
   userId: string;
+  image: string;
   createdAt?: string;
   updatedAt?: string;
 }
@@ -22,6 +23,7 @@ export interface ITrackDocument extends Document {
   time: number;
   distance: number;
   userId: string;
+  image: string;
   createdAt?: string;
   updatedAt?: string;
 }

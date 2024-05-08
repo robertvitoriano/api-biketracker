@@ -44,7 +44,7 @@ class TrackRepository implements ITrackRepository {
         coordinates: "$path.coordinates",
         time: 1,
         distance: 1,
-        created: 1,
+        createdAt: 1,
       });
   }
   async storeTrack(data: ITrack): Promise<void> {

@@ -44,6 +44,7 @@ class TrackRepository implements ITrackRepository {
         coordinates: "$path.coordinates",
         time: 1,
         distance: 1,
+        image: 1,
         createdAt: 1,
       });
   }

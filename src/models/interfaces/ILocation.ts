@@ -10,6 +10,7 @@ export interface ILocation {
   type: string;
   updatedAt?: string;
   createdAt?: string;
+  visibility?: "public" | "private";
   images?: any[];
 }
 
@@ -23,5 +24,6 @@ export interface ILocationDocument extends Document {
   type: string;
   updatedAt?: string;
   createdAt?: string;
+  visibility: "public" | "private";
   images?: [string];
 }

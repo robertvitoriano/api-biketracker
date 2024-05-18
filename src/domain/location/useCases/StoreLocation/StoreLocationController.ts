@@ -4,7 +4,7 @@ class StoreLocationController {
   constructor(private storeLocationUseCase: StoreLocationUseCase) {}
 
   async handle(request: Request, response: Response) {
-    const { coordinates, title, type } = request.body;
+    const { coordinates, title, type, visibility } = request.body;
     const { _id: userId } = request.user;
     const coordinatesParsed = JSON.parse(String(coordinates));
     try {
@@ -13,6 +13,7 @@ class StoreLocationController {
         coordinates: coordinatesParsed,
         userId,
         type,
+        visibility,
       });
       return response.status(201).json(createLocationResponse);
     } catch (error) {

@@ -4,4 +4,5 @@ export interface ILocationDTO {
   userId: string;
   type: string;
   images?: any[];
+  visibility: "private" | "public";
 }

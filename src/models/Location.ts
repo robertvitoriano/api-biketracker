@@ -36,6 +36,11 @@ const LocationSchema = new Schema<ILocationDocument>(
       type: CoordinatesSchema,
       required: true,
     },
+    visibility: {
+      type: String,
+      required: false,
+      default: "public",
+    },
   },
   { timestamps: true }
 );

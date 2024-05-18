@@ -3,10 +3,14 @@ import { ITrackDTO } from "../../dto/ITrackDTO";
 import { TrackRepository } from "../../repositories/TrackRepository";
 import fs from "fs";
 import path from "path";
+import { LocationRepository } from "../../../location/repositories/LocationRepository";
 const { Upload } = require("@aws-sdk/lib-storage");
 const { S3Client } = require("@aws-sdk/client-s3");
 class StoreNewUserTrackUseCase {
-  constructor(private trackRepository: TrackRepository) {}
+  constructor(
+    private trackRepository: TrackRepository,
+    private locationRepository: LocationRepository
+  ) {}
   async execute(data: ITrackDTO) {
     const coordinatesParsed: [[number, number]] = JSON.parse(
       String(data.coordinates)
@@ -19,6 +23,7 @@ class StoreNewUserTrackUseCase {
     const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
     const region = process.env.S3_REGION;
     const Bucket = process.env.S3_BUCKET;
+    const { startLocationTitle, finishLocationTitle } = data;
 
     if (extension === "jpeg" || extension === "jpg" || extension === "png") {
       const imageData = base64ToArray[1];
@@ -53,6 +58,24 @@ class StoreNewUserTrackUseCase {
         console.error("Error uploading image to S3:", error);
         throw error;
       }
+      const startLocationId = await this.locationRepository.storeLocation({
+        title: startLocationTitle,
+        coords: { coordinates: coordinatesParsed[0], type: "Point" },
+        visibility: data.visibility,
+        type: "track-start",
+        userId: data.userId,
+      });
+
+      const finishLocationId = await this.locationRepository.storeLocation({
+        title: finishLocationTitle,
+        visibility: data.visibility,
+        coords: {
+          coordinates: coordinatesParsed[coordinatesParsed.length - 1],
+          type: "Point",
+        },
+        type: "track-finish",
+        userId: data.userId,
+      });
 
       await this.trackRepository.storeTrack({
         ...data,
@@ -60,6 +83,8 @@ class StoreNewUserTrackUseCase {
         time: Number(data.time),
         path: { coordinates: coordinatesParsed },
         image: `https://${Bucket}.s3.amazonaws.com/${s3Key}`,
+        startLocationId,
+        finishLocationId,
       });
     } else {
       console.error("Unsupported image format");

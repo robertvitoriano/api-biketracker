@@ -22,8 +22,9 @@ class LocationRepository implements ILocationRepository {
     return locations;
   }
 
-  async storeLocation(data: ILocation): Promise<void> {
-    await this.locationModel.create(data);
+  async storeLocation(data: ILocation): Promise<string> {
+    const { _id: locationId } = await this.locationModel.create(data);
+    return locationId;
   }
 }
 

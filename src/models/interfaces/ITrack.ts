@@ -10,6 +10,9 @@ export interface ITrack {
   distance: number;
   userId: string;
   image: string;
+  startLocationId: string;
+  finishLocationId: string;
+  visibility: "public" | "private";
   createdAt?: string;
   updatedAt?: string;
 }
@@ -24,6 +27,9 @@ export interface ITrackDocument extends Document {
   distance: number;
   userId: string;
   image: string;
+  startLocationId: string;
+  finishLocationId: string;
+  visibility: "public" | "private";
   createdAt?: string;
   updatedAt?: string;
 }

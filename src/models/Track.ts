@@ -38,6 +38,19 @@ const TrackSchema = new Schema<ITrackDocument>(
       type: String,
       required: true,
     },
+    startLocationId: {
+      type: String,
+      required: true,
+    },
+    finishLocationId: {
+      type: String,
+      required: true,
+    },
+    visibility: {
+      type: String,
+      enum: ["public", "private"],
+      required: true,
+    },
     image: {
       type: String,
       required: true,

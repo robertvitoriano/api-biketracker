@@ -4,7 +4,16 @@ class StoreNewUserTrackController {
   constructor(private storeNewUserUseCase: StoreNewUserTrackUseCase) {}
 
   async handle(request: Request, response: Response) {
-    const { coordinates, title, time, distance, image } = request.body;
+    const {
+      coordinates,
+      title,
+      time,
+      distance,
+      image,
+      startLocationTitle,
+      finishLocationTitle,
+      visibility,
+    } = request.body;
     const { _id: userId } = request.user;
     try {
       const createNewUserTrackResponse = await this.storeNewUserUseCase.execute(
@@ -15,6 +24,9 @@ class StoreNewUserTrackController {
           time,
           distance,
           image,
+          finishLocationTitle,
+          startLocationTitle,
+          visibility,
         }
       );
       return response.status(201).json(createNewUserTrackResponse);

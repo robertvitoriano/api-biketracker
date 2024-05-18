@@ -18,6 +18,7 @@ class LocationRepository implements ILocationRepository {
         userId: 1,
         createdAt: 1,
         visibility: 1,
+        type: 1,
       });
     return locations;
   }

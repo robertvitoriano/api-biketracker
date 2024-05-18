@@ -24,16 +24,9 @@ class StoreNewUserTrackUseCase {
     const region = process.env.S3_REGION;
     const Bucket = process.env.S3_BUCKET;
     const { startLocationTitle, finishLocationTitle } = data;
-
     if (extension === "jpeg" || extension === "jpg" || extension === "png") {
       const imageData = base64ToArray[1];
       const fileName = ((new Date().getTime() / 1000) | 0) + "." + extension;
-      console.log({
-        credentials: {
-          accessKeyId,
-          secretAccessKey,
-        },
-      });
       const s3Key = `track-images/${fileName}`;
 
       const s3Client = new S3Client({

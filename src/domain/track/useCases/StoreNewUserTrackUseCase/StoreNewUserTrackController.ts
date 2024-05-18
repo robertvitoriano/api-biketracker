@@ -31,6 +31,7 @@ class StoreNewUserTrackController {
       );
       return response.status(201).json(createNewUserTrackResponse);
     } catch (error) {
+      console.error(error);
       response.status(500).send({
         errrorMessage: error.message,
       });

@@ -1,11 +1,15 @@
 import { StoreNewUserTrackController } from "./StoreNewUserTrackController";
 import { StoreNewUserTrackUseCase } from "./StoreNewUserTrackUseCase";
 import { trackRepository } from "./../../repositories/factories/TrackRepositoryFactory";
+import { locationRepository } from "../../../location/repositories/factories/LocationRepositoryFactory";
 
-const createUserUseCase = new StoreNewUserTrackUseCase(trackRepository);
-
-const storeNewUserTrackController = new StoreNewUserTrackController(
-  createUserUseCase
+const storeNewTrackUseCase = new StoreNewUserTrackUseCase(
+  trackRepository,
+  locationRepository
 );
 
-export { createUserUseCase, storeNewUserTrackController };
+const storeNewUserTrackController = new StoreNewUserTrackController(
+  storeNewTrackUseCase
+);
+
+export { storeNewTrackUseCase, storeNewUserTrackController };

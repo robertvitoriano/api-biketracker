@@ -7,7 +7,7 @@ export interface ILocation {
     coordinates: [number, number];
   };
   userId: string;
-  type: string;
+  type: "generic" | "track-finish" | "track-start";
   updatedAt?: string;
   createdAt?: string;
   visibility?: "public" | "private";
@@ -21,7 +21,7 @@ export interface ILocationDocument extends Document {
     coordinates: [number, number];
   };
   userId: string;
-  type: string;
+  type: "generic" | "track-finish" | "track-start";
   updatedAt?: string;
   createdAt?: string;
   visibility: "public" | "private";

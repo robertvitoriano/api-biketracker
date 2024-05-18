@@ -10,7 +10,7 @@ const CoordinatesSchema = new Schema({
     required: true,
   },
   coordinates: {
-    type: Array,
+    type: [Number],
     required: true,
   },
 });
@@ -21,11 +21,12 @@ const LocationSchema = new Schema<ILocationDocument>(
       required: true,
     },
     images: {
-      type: Array,
+      type: [String],
       required: false,
     },
     type: {
       type: String,
+      enum: ["generic", "track-finish", "track-start"],
       required: true,
     },
     userId: {

@@ -40,6 +40,7 @@ const LocationSchema = new Schema<ILocationDocument>(
     visibility: {
       type: String,
       required: false,
+      enum: ["private", "public"],
       default: "public",
     },
   },

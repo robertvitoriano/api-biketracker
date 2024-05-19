@@ -5,6 +5,7 @@ import { storeNewUserTrackController } from "../domain/track/useCases/StoreNewUs
 import { getUserTracksController } from "../domain/track/useCases/GetUserTracks";
 import { getUserStatisticsController } from "../domain/track/useCases/GetUserStatistics";
 import { multerUpload } from "../utils";
+import { deleteTrackController } from "../domain/track/useCases/DeleteTrack";
 
 const trackRouter = Router();
 trackRouter.post(
@@ -19,5 +20,8 @@ trackRouter.get("/statistics", auth, (request: Request, response: Response) =>
 );
 trackRouter.get("/", auth, (request: Request, response: Response) =>
   getUserTracksController.handle(request, response)
+);
+trackRouter.delete("/:trackId", auth, (request: Request, response: Response) =>
+  deleteTrackController.handle(request, response)
 );
 export default trackRouter;

@@ -27,6 +27,9 @@ class LocationRepository implements ILocationRepository {
     const { _id: locationId } = await this.locationModel.create(data);
     return locationId;
   }
+  async deleteLocation(locationId): Promise<void> {
+    await this.locationModel.deleteMany([]);
+  }
 }
 
 export { LocationRepository };

@@ -28,7 +28,7 @@ class LocationRepository implements ILocationRepository {
     return locationId;
   }
   async deleteLocation(locationId): Promise<void> {
-    await this.locationModel.deleteMany([]);
+    await this.locationModel.findByIdAndRemove(locationId);
   }
 }
 

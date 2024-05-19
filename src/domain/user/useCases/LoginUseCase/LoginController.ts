@@ -16,6 +16,7 @@ class LoginController {
 
       return response.status(201).json(loginData);
     } catch (error) {
+      console.error(error);
       return response.status(500).send({
         errorMessage: error.message,
       });

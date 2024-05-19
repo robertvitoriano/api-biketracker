@@ -55,7 +55,7 @@ class TrackRepository implements ITrackRepository {
     await this.trackModel.findOneAndDelete({ _id: trackId, userId });
   }
   async getTrackLocationIds({ trackId, userId }): Promise<string[]> {
-    const { startLocationId, finishLocationId } = await this.trackModel
+    const [{ startLocationId, finishLocationId }] = await this.trackModel
       .find({ _id: trackId, userId })
       .select({ finishLocationId: 1, startLocationId: 1 });
 

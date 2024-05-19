@@ -11,7 +11,6 @@ class DeleteTrackUseCase {
       trackId,
       userId,
     });
-
     await this.trackRepository.deleteTrack({
       trackId,
       userId,

@@ -13,6 +13,7 @@ class StoreNewUserTrackController {
       startLocationTitle,
       finishLocationTitle,
       visibility,
+      speed,
     } = request.body;
     const { _id: userId } = request.user;
     try {
@@ -27,6 +28,7 @@ class StoreNewUserTrackController {
           finishLocationTitle,
           startLocationTitle,
           visibility,
+          speed,
         }
       );
       return response.status(201).json(createNewUserTrackResponse);

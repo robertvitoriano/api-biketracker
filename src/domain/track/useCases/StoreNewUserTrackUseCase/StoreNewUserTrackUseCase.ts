@@ -74,6 +74,7 @@ class StoreNewUserTrackUseCase {
         ...data,
         distance: Number(data.distance),
         time: Number(data.time),
+        speed: Number(data.speed),
         path: { coordinates: coordinatesParsed },
         image: `https://${Bucket}.s3.amazonaws.com/${s3Key}`,
         startLocationId,

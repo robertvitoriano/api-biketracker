@@ -16,7 +16,12 @@
     "copy-files": "src/views/*.ejs src/views/assets/*.css src/views/*.jpg build/",
     "watch-node": "nodemon build/src/server.js",
     "watch-ts": "tsc -w && copy-files",
-    "prod": "pm2 start build/src/server.js"
+    "prod": "pm2 start build/src/server.js",
+    "migrations-create":"./node_modules/.bin/migrate create",
+    "migrations-list":"./node_modules/.bin/migrate list",
+    "migrations-up":"./node_modules/.bin/migrate up",
+    "migrations-down":"./node_modules/.bin/migrate down"
+
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.569.0",

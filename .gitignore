@@ -5,3 +5,4 @@ config/local_variables.ts
 config/local_variables.js
 build
 .env
+migrate.json

@@ -16,6 +16,7 @@ class TrackRepository implements ITrackRepository {
           totalOfTracks: { $sum: 1 },
           totalTime: { $sum: "$time" },
           totalDistance: { $sum: "$distance" },
+          sumOfSpeeds: { $sum: "$speed" },
         },
       },
       {
@@ -24,9 +25,11 @@ class TrackRepository implements ITrackRepository {
           totalOfTracks: 1,
           totalTime: 1,
           totalDistance: 1,
+          averageSpeed: { $divide: ["$sumOfSpeeds", "$totalOfTracks"] },
         },
       },
     ]);
+
     const userStatistics =
       aggregationResult.length > 0 ? aggregationResult[0] : null;
 
@@ -44,6 +47,7 @@ class TrackRepository implements ITrackRepository {
         coordinates: "$path.coordinates",
         time: 1,
         distance: 1,
+        speed: 1,
         image: 1,
         createdAt: 1,
       });

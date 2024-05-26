@@ -51,6 +51,10 @@ const TrackSchema = new Schema<ITrackDocument>(
       enum: ["public", "private"],
       required: true,
     },
+    speed: {
+      type: Number,
+      required: true,
+    },
     image: {
       type: String,
       required: true,

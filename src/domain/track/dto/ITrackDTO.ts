@@ -5,6 +5,7 @@ export interface ITrackDTO {
   title: string;
   time: number;
   distance: number;
+  speed: number;
   startLocationTitle: string;
   finishLocationTitle: string;
   visibility: "public" | "private";

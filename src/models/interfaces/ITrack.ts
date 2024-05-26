@@ -8,6 +8,7 @@ export interface ITrack {
   };
   time: number;
   distance: number;
+  speed: number;
   userId: string;
   image: string;
   startLocationId: string;
@@ -25,6 +26,7 @@ export interface ITrackDocument extends Document {
   };
   time: number;
   distance: number;
+  speed: number;
   userId: string;
   image: string;
   startLocationId: string;

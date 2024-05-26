@@ -18,7 +18,7 @@ async function down() {
   
   for (const track of alltracks) {
     track.speed = "";
-    track.save();
+    await track.save();
   }
 }
 

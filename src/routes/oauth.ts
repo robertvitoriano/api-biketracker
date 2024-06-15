@@ -37,7 +37,10 @@ googleOAuthRouter.get(
   "/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/login" }),
   function (req, res) {
-    res.redirect(process.env.CLIENT_URL);
+    //@ts-ignore
+    const { token } = res.req.user;
+
+    res.redirect(`${process.env.CLIENT_URL}?token=${token}`);
   }
 );
 

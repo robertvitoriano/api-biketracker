@@ -36,10 +36,6 @@ const corsOptions = {
   credentials: true,
 };
 // Add logging to debug environment variables
-console.log("Google Client ID:", process.env.GOOGLE_CLIENT_ID);
-console.log("Google Client Secret:", process.env.GOOGLE_CLIENT_SECRET);
-console.log("Google Callback URL:", process.env.GOOGLE_CALLBACK_URL);
-console.log("Client URL:", process.env.CLIENT_URL);
 
 app.use(cors(corsOptions));
 

@@ -3,11 +3,10 @@ import morgan from "morgan";
 import express from "express";
 
 import cors from "cors";
-
-import router from "./routes/router";
-
 import dotenv from "dotenv";
 dotenv.config();
+
+import router from "./routes/router";
 
 import "./database/connection";
 

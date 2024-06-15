@@ -11,24 +11,33 @@ passport.use(
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "/auth/google/callback",
+      scope: ["profile", "email"],
     },
     async function (accessToken, refreshToken, profile, cb) {
-      await loginOAuthUseCase.execute(profile);
+      const loginResponse = await loginOAuthUseCase.execute(profile);
+      cb(null, loginResponse);
     }
   )
 );
 
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
+
 googleOAuthRouter.get(
   "/auth/google",
-  passport.authenticate("google", { scope: ["profile"] })
+  passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
 googleOAuthRouter.get(
   "/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/login" }),
   function (req, res) {
-    // Successful authentication, redirect home.
-    res.redirect("/");
+    res.redirect(process.env.CLIENT_URL);
   }
 );
 

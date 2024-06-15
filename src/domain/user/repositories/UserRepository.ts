@@ -22,11 +22,19 @@ class UserRepository implements IUserRepository {
     return user;
   }
   public async createUser({ username, name, email, password }): Promise<IUser> {
+    if (password) {
+      const user = await this.userModel.create({
+        username,
+        name,
+        email,
+        password,
+      });
+      return user;
+    }
     const user = await this.userModel.create({
       username,
       name,
       email,
-      password,
     });
     return user;
   }

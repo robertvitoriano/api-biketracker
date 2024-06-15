@@ -8,12 +8,20 @@ class LoginOAuthUseCase {
     user: { email: string; name: string; username: string };
     token: string;
   }> {
-    console.log({ LOGGEDIN_PROFILE_GOOGLE: profile });
-    const user: IUser = await this.userRepository.findByCredentials({
-      email: profile.email,
+    const { name, email, picture } = profile._json;
+
+    let user: IUser = await this.userRepository.findByCredentials({
+      email: email,
     });
 
-    if (!user) throw new Error("Unable to login !");
+    if (!user) {
+      user = await this.userRepository.createUser({
+        email,
+        name,
+        avatar: picture,
+        username: email.split("@")[0],
+      });
+    }
     const token = await generateAuthToken(user._id);
 
     if (!token) throw new Error("Unable to login !");

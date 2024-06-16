@@ -10,6 +10,7 @@ export interface IUser {
   confirmed: Boolean;
   name: string;
   email: string;
+  avatar: string;
   receivedEmail: boolean;
   emailAttempts?: number;
   password: string;

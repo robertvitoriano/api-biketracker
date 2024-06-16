@@ -17,6 +17,7 @@ class CreateUserUseCase {
       name,
       email,
       password: encodedPassword,
+      avatar: `https://${process.env.S3_BUCKET}.s3.amazonaws.com/default-avatar.png`,
     });
 
     const token = await generateAuthToken(user._id.toString());

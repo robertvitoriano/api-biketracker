@@ -21,7 +21,13 @@ class UserRepository implements IUserRepository {
     await user.save();
     return user;
   }
-  public async createUser({ username, name, email, password }): Promise<IUser> {
+  public async createUser({
+    username,
+    avatar,
+    name,
+    email,
+    password,
+  }): Promise<IUser> {
     if (password) {
       const user = await this.userModel.create({
         username,
@@ -35,6 +41,7 @@ class UserRepository implements IUserRepository {
       username,
       name,
       email,
+      avatar,
     });
     return user;
   }

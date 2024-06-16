@@ -4,6 +4,10 @@ import { IUserModel } from "./interfaces";
 
 const userSchema = new mongoose.Schema<IUserModel>(
   {
+    avatar: {
+      type: String,
+      required: true,
+    },
     username: {
       type: String,
       required: false,

@@ -2,8 +2,9 @@ import passport from "passport";
 import { Strategy } from "passport-google-oauth20";
 import { Router } from "express";
 import { loginOAuthUseCase } from "../domain/user/useCases/LoginOAuthUseCase";
+import { loginAndroidOAuthController } from "../domain/user/useCases/LoginAndroidOAuthUseCase";
 
-const googleOAuthRouter = Router();
+const oauthRouter = Router();
 
 passport.use(
   new Strategy(
@@ -28,12 +29,12 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
-googleOAuthRouter.get(
+oauthRouter.get(
   "/auth/google",
   passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
-googleOAuthRouter.get(
+oauthRouter.get(
   "/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/login" }),
   function (req, res) {
@@ -43,5 +44,7 @@ googleOAuthRouter.get(
     res.redirect(`${process.env.CLIENT_URL}?token=${token}`);
   }
 );
-
-export default googleOAuthRouter;
+oauthRouter.post("/auth/google-android", (request, response) =>
+  loginAndroidOAuthController.handle(request, response)
+);
+export default oauthRouter;

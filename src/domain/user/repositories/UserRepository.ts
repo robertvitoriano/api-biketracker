@@ -26,7 +26,7 @@ class UserRepository implements IUserRepository {
     avatar,
     name,
     email,
-    password,
+    password = null,
   }): Promise<IUser> {
     if (password) {
       const user = await this.userModel.create({

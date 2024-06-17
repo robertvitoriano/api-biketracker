@@ -13,7 +13,7 @@ export interface IUser {
   avatar: string;
   receivedEmail: boolean;
   emailAttempts?: number;
-  password: string;
+  password?: string;
   createdAt: string;
   updatedAt?: string;
 }

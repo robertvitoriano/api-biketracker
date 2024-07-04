@@ -6,7 +6,7 @@ class GetProfileController {
   async handle(request: Request, response: Response) {
     try {
       const getProfileResponse = await this.getProfileUseCase.execute(
-        request.user
+        request.user.email
       );
       return response.status(201).json(getProfileResponse);
     } catch (error) {

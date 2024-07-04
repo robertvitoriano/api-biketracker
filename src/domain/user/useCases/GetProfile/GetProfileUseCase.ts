@@ -1,16 +1,12 @@
-class GetProfileUseCase {
-  async execute({ _id, name, username, email, password, avatar }) {
-    const user = {
-      _id,
-      name,
-      username,
-      email,
-      password,
-      avatar:
-        avatar ||
-        `https://${process.env.S3_BUCKET}.s3.amazonaws.com/default-avatar.png`,
-    };
+import { IUserRepository } from "../../repositories/IUserRepository";
 
+class GetProfileUseCase {
+  constructor(private userRepository: IUserRepository) {}
+
+  async execute(userEmail) {
+    const user = await this.userRepository.findByCredentials({
+      email: userEmail,
+    });
     return user;
   }
 }

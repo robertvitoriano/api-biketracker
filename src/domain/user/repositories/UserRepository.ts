@@ -74,7 +74,7 @@ class UserRepository implements IUserRepository {
           name: 1,
           username: 1,
           email: 1,
-          password: 1,
+          weight: 1,
         });
     }
     if (username) {

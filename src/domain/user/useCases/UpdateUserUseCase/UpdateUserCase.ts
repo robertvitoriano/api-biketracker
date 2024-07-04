@@ -12,7 +12,6 @@ class UpdateUserUseCase {
     name,
     weight,
   }: IUser): Promise<IUser> {
-    console.log({ email, username, password, avatar, name, weight });
     const user = await this.userRepository.update({
       email,
       username,

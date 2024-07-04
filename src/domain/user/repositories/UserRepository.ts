@@ -9,7 +9,7 @@ class UserRepository implements IUserRepository {
     const updateData: any = {};
 
     for (const key in data) {
-      if (data[key] !== undefined) {
+      if (typeof data[key] !== "undefined") {
         updateData[key] = data[key];
       }
     }

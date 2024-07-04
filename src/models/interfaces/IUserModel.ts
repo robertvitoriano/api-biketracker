@@ -8,6 +8,7 @@ export interface IUserModel extends Document {
   receivedEmail: boolean;
   emailAttempts?: number;
   avatar: string;
+  weight: number;
   password?: string;
   createdAt: string;
   updatedAt?: string;

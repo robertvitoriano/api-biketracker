@@ -35,6 +35,11 @@ const userSchema = new mongoose.Schema<IUserModel>(
       type: String,
       required: false,
     },
+    weight: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
   },
   {
     timestamps: true,

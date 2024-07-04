@@ -1,16 +1,25 @@
 import UserModel from "./../../../models/User";
 import { IUserRepository } from "./IUserRepository";
 import { IUser, IUserCredentials } from "./../types";
+
 class UserRepository implements IUserRepository {
   constructor(private userModel: typeof UserModel) {}
 
   async update(data: any): Promise<IUser> {
+    const updateData: any = {};
+
+    for (const key in data) {
+      if (data[key] !== undefined) {
+        updateData[key] = data[key];
+      }
+    }
+
     const user = await this.userModel.findOneAndUpdate(
       {
         email: data.email,
       },
       {
-        ...data,
+        $set: updateData,
       },
       {
         new: true,
@@ -18,9 +27,9 @@ class UserRepository implements IUserRepository {
       }
     );
 
-    await user.save();
     return user;
   }
+
   public async createUser({
     username,
     avatar,

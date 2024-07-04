@@ -7,13 +7,14 @@ export interface IUserCredentials {
 export interface IUser {
   _id?: string;
   username: string;
-  confirmed: Boolean;
+  confirmed?: Boolean;
   name: string;
   email: string;
   avatar: string;
-  receivedEmail: boolean;
+  weight?: number;
+  receivedEmail?: boolean;
   emailAttempts?: number;
   password?: string;
-  createdAt: string;
+  createdAt?: string;
   updatedAt?: string;
 }

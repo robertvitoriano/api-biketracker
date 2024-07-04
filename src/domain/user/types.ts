@@ -9,8 +9,8 @@ export interface IUser {
   username: string;
   confirmed?: Boolean;
   name: string;
-  email: string;
-  avatar: string;
+  email?: string;
+  avatar?: string;
   weight?: number;
   receivedEmail?: boolean;
   emailAttempts?: number;

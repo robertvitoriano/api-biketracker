@@ -11,11 +11,18 @@ class UpdateUserUseCase {
     avatar,
     name,
     weight,
-  }: IUser): Promise<void> {
-    const user = await this.userRepository.findByCredentials({
+  }: IUser): Promise<IUser> {
+    console.log({ email, username, password, avatar, name, weight });
+    const user = await this.userRepository.update({
       email,
       username,
+      password,
+      avatar,
+      name,
+      weight,
     });
+
+    return user;
   }
 }
 

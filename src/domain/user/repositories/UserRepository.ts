@@ -14,7 +14,7 @@ class UserRepository implements IUserRepository {
       }
     }
 
-    const user = await this.userModel.findOneAndUpdate(
+    const { name, username, weight } = await this.userModel.findOneAndUpdate(
       {
         email: data.email,
       },
@@ -27,7 +27,11 @@ class UserRepository implements IUserRepository {
       }
     );
 
-    return user;
+    return {
+      name,
+      username,
+      weight,
+    };
   }
 
   public async createUser({

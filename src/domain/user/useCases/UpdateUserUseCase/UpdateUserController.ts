@@ -16,7 +16,6 @@ class UpdateUserController {
         avatar,
         name,
       });
-
       return response.status(201).json(updateUserData);
     } catch (error) {
       console.error(error);
